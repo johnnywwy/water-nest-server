@@ -3,8 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+
 import { UserModule } from './modules/user/user.module';
-import { UserService } from './modules/user/user.service';
 
 @Module({
   imports: [
@@ -20,7 +23,10 @@ import { UserService } from './modules/user/user.service';
       autoLoadEntities: true, //是否自动加载实体，这里是开启状态
       synchronize: true, //是否自动同步数据库，这里是开启状态
     }),
-
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+    }),
     // 导入其他模块
     UserModule,
   ],
