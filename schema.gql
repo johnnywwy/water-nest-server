@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserType {
+  id: String!
+
+  """昵称"""
+  name: String!
+
+  """简介"""
+  desc: String!
+
+  """tel"""
+  tel: String!
+
+  """头像"""
+  avatar: String
+}
+
+type Query {
+  """使用 ID 查询用户"""
+  find(id: String!): UserType!
+}

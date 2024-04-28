@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, FindOperator, Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 
 import { User } from './models/user.entity';
 
@@ -38,14 +38,13 @@ export class UserService {
     return false;
   }
 
-  // 通过name id 或者 邮箱查询
+  // 查询一个用户
   async find(id: string): Promise<User> {
-    const res = this.UserRepository.findOne({
+    const res = await this.UserRepository.findOne({
       where: {
         id,
       },
     });
-
     return res;
   }
 
