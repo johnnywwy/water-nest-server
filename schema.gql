@@ -21,4 +21,26 @@ type UserType {
 type Query {
   """使用 ID 查询用户"""
   find(id: String!): UserType!
+
+  """更新用户"""
+  update(id: String!, params: UserInput!): UserType!
+}
+
+input UserInput {
+  """昵称"""
+  name: String!
+
+  """简介"""
+  desc: String!
+
+  """头像"""
+  avatar: String!
+}
+
+type Mutation {
+  """新增用户"""
+  create(params: UserInput!): Boolean!
+
+  """删除用户"""
+  delete(id: String!): Boolean!
 }
