@@ -8,6 +8,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+// import { EmailModule } from './modules/email/email.module';
 
 @Module({
   imports: [
@@ -28,7 +30,10 @@ import { UserModule } from './modules/user/user.module';
       autoSchemaFile: './schema.gql',
     }),
     // 导入其他模块
-    UserModule,
+    UserModule, // 用户模块
+    AuthModule, // 登录模块
+    // EmailModule, // 邮箱模块
+    // OssModule
   ],
   controllers: [AppController],
   providers: [AppService],

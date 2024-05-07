@@ -43,4 +43,7 @@ type Mutation {
 
   """删除用户"""
   delete(id: String!): Boolean!
+
+  """发送邮箱验证码"""
+  sendEmailCode(params: String!): Boolean!
 }
