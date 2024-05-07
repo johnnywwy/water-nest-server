@@ -5,10 +5,10 @@ import { ConsoleLogger, Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { EmailService } from '../email/email.service';
+import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [], // TypeOrmModule.forFeature([User])
-
+  imports: [UserModule], // TypeOrmModule.forFeature([User])
   providers: [ConsoleLogger, AuthService, AuthResolver, EmailService],
   exports: [],
 })

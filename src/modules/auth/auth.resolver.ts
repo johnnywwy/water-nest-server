@@ -1,3 +1,4 @@
+import { CreateResult } from 'src/common/dto/result.type';
 import { AuthService } from './auth.service';
 import {
   Args,
@@ -15,7 +16,8 @@ export class AuthResolver {
 
   @Mutation(() => Boolean, { description: '发送邮箱验证码' })
   async sendEmailCode(@Args('params') params: string): Promise<boolean> {
-    return await this.authService.sendEmailCode(params);
+    const res = await this.authService.sendEmailCode(params);
+    return res;
   }
 
   // @Query(() => UserType, { description: '使用 ID 查询用户' })

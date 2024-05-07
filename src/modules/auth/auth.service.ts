@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 
 // import { User } from './models/auth.entity';
 import { EmailService } from '../email/email.service';
+import { UserService } from '../user/user.service';
 
 function generateNumericVerificationCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -11,11 +12,18 @@ function generateNumericVerificationCode() {
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly emailService: EmailService) {}
+  constructor(
+    private readonly emailService: EmailService,
+    private readonly userService: UserService,
+  ) {}
 
   //发送邮箱验证码
   async sendEmailCode(email: string): Promise<boolean> {
     console.log('email', email);
+
+    const user = await this.userService.findByEmail(email);
+    console.log('user', user);
+
     const verificationCode = generateNumericVerificationCode();
 
     try {

@@ -59,4 +59,14 @@ export class UserService {
 
     return res;
   }
+
+  // 通过邮件查询
+  async findByEmail(email: string): Promise<User> {
+    const res = await this.UserRepository.findOne({
+      where: {
+        email,
+      },
+    });
+    return res;
+  }
 }
