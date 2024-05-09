@@ -15,8 +15,17 @@ export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @Mutation(() => Boolean, { description: '发送邮箱验证码' })
-  async sendEmailCode(@Args('params') params: string): Promise<boolean> {
-    const res = await this.authService.sendEmailCode(params);
+  async sendEmailCode(@Args('email') email: string): Promise<boolean> {
+    const res = await this.authService.sendEmailCode(email);
+    return res;
+  }
+
+  @Mutation(() => Boolean, { description: '登录' })
+  async login(
+    @Args('email') email: string,
+    @Args('code') code: string,
+  ): Promise<boolean> {
+    const res = await this.authService.login(email, code);
     return res;
   }
 

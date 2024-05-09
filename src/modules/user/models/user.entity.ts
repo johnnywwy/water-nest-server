@@ -44,4 +44,18 @@ export class User {
     nullable: true, //在数据库层可以为空
   })
   account: string;
+
+  // 验证码
+  @Column({
+    comment: '验证码',
+    nullable: true, //在数据库层可以为空
+  })
+  code: string;
+
+  // 验证码过期时间
+  @Column({
+    comment: '验证码过期时间',
+    nullable: true, //在数据库层可以为空
+  })
+  codeExpire: string;
 }

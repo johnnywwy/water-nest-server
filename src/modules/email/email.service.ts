@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
+import { RedisService } from '../redis/redis.service';
 
 @Injectable()
 export class EmailService {
+  constructor(private readonly redisService: RedisService) {}
+
   private transporter = nodemailer.createTransport({
     host: 'smtp.163.com', // SMTP 服务器
     port: 465, // SMTP 端口
@@ -20,7 +23,7 @@ export class EmailService {
     const mailOptions = {
       from: 'johnnywwy@163.com',
       to,
-      subject: '邮箱验证码',
+      subject: '超级无敌牛逼的邮箱验证码',
       text: `你的验证码是: ${verificationCode}`,
     };
 
