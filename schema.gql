@@ -18,6 +18,14 @@ type UserType {
   avatar: String
 }
 
+type Result {
+  """状态码"""
+  code: Float!
+
+  """信息"""
+  message: String!
+}
+
 type Query {
   """使用 ID 查询用户"""
   find(id: String!): UserType!
@@ -45,8 +53,8 @@ type Mutation {
   delete(id: String!): Boolean!
 
   """发送邮箱验证码"""
-  sendEmailCode(email: String!): Boolean!
+  sendEmailCode(email: String!): Result!
 
   """登录"""
-  login(email: String!, code: String!): Boolean!
+  login(email: String!, code: String!): Result!
 }

@@ -2,8 +2,11 @@ import { UserService } from './user.service';
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserInput } from './dto/user-input.type';
 import { UserType } from './dto/user.type';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '@/common/guards/auth.guards';
 
 @Resolver()
+@UseGuards(GqlAuthGuard)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 

@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { RedisService } from '../redis/redis.service';
 
 @Injectable()
 export class EmailService {
-  constructor(private readonly redisService: RedisService) {}
+  constructor() {}
 
   private transporter = nodemailer.createTransport({
     host: 'smtp.163.com', // SMTP 服务器

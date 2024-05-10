@@ -1,4 +1,3 @@
-import { CreateResult } from 'src/common/dto/result.type';
 import { AuthService } from './auth.service';
 import {
   Args,
@@ -7,6 +6,7 @@ import {
   // Query,
   Resolver,
 } from '@nestjs/graphql';
+import { Result } from './dto/auth.type';
 // import { UserInput } from './dto/user-input.type';
 // import { UserType } from './dto/user.type';
 
@@ -14,17 +14,17 @@ import {
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => Boolean, { description: '发送邮箱验证码' })
-  async sendEmailCode(@Args('email') email: string): Promise<boolean> {
+  @Mutation(() => Result, { description: '发送邮箱验证码' })
+  async sendEmailCode(@Args('email') email: string): Promise<Result> {
     const res = await this.authService.sendEmailCode(email);
     return res;
   }
 
-  @Mutation(() => Boolean, { description: '登录' })
+  @Mutation(() => Result, { description: '登录' })
   async login(
     @Args('email') email: string,
     @Args('code') code: string,
-  ): Promise<boolean> {
+  ): Promise<Result> {
     const res = await this.authService.login(email, code);
     return res;
   }
