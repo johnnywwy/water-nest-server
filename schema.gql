@@ -24,6 +24,9 @@ type Result {
 
   """信息"""
   message: String!
+
+  """数据"""
+  data: String!
 }
 
 type Query {
