@@ -12,4 +12,6 @@ export class UserType {
   tel: string;
   @Field({ description: '头像', nullable: true })
   avatar?: string;
+  @Field({ description: '邮箱' })
+  email?: string;
 }

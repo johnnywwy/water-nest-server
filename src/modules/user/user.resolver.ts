@@ -20,6 +20,13 @@ export class UserResolver {
     return await this.userService.find(id);
   }
 
+  @Query(() => UserType, { description: '使用 ID 查询用户' })
+  async getUserInfo(@Context() cxt: any): Promise<UserType> {
+    // console.log(cxt.req.user)
+    const id = cxt.req.user.id;
+    return await this.userService.find(id);
+  }
+
   @Query(() => UserType, { description: '更新用户' })
   async update(
     @Args('id') id: string,

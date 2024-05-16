@@ -15,7 +15,8 @@ import { JwtStrategy } from './jwt.strategy';
     UserModule,
     JwtModule.register({
       secret: 'fkdFYwkcLRVxQOKk',
-      signOptions: { expiresIn: '60s' },
+      // 设置过期时间 1天
+      signOptions: { expiresIn: 60 * 60 * 24 + 's' },
     }),
   ], // TypeOrmModule.forFeature([User])
   providers: [

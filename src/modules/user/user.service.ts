@@ -45,6 +45,8 @@ export class UserService {
         id,
       },
     });
+    console.log('res', res);
+
     return res;
   }
 

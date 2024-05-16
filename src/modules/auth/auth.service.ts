@@ -94,6 +94,8 @@ export class AuthService {
         // 验证码未过期且正确
 
         const token = this.jwtService.sign({ id: user.id });
+        console.log('tokentoken', token);
+
         return {
           code: SUCCESS,
           message: '登录成功',
