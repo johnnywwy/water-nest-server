@@ -1,3 +1,4 @@
+import { Result } from '@/common/dto/result.type';
 import { AuthService } from './auth.service';
 import {
   Args,
@@ -6,7 +7,6 @@ import {
   // Query,
   Resolver,
 } from '@nestjs/graphql';
-import { Result } from './dto/auth.type';
 // import { UserInput } from './dto/user-input.type';
 // import { UserType } from './dto/user.type';
 

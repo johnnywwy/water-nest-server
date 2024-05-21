@@ -3,11 +3,11 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Page {
   @Field(() => Int)
-  total?: number;
+  total: number;
 
   @Field(() => Int)
-  start?: number;
+  pageNum?: number;
 
   @Field(() => Int)
-  length?: number; // 每页显示条数
+  pageSize?: number;
 }

@@ -8,7 +8,7 @@ import {
   LOGIN_ERROR,
   SUCCESS,
 } from 'src/common/constants/code';
-import { Result } from 'src/common/dto/result.type';
+import { Result } from '@/common/dto/result.type';
 
 const EXPIRATION_TIME = 5 * 60 * 1000; // 5分钟
 

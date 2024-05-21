@@ -4,6 +4,7 @@ import { UserInput } from './dto/user-input.type';
 import { UserType } from './dto/user.type';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '@/common/guards/auth.guards';
+import { Result } from '@/common/dto/result.type';
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -27,12 +28,18 @@ export class UserResolver {
     return await this.userService.find(id);
   }
 
-  @Mutation(() => UserType, { description: '更新用户' })
+  @Mutation(() => Result, { description: '更新用户' })
   async updateUser(
     @Args('id') id: string,
     @Args('params') params: UserInput,
-  ): Promise<any> {
-    return await this.userService.update(id, params);
+  ): Promise<Result> {
+    const res = await this.userService.update(id, params);
+    if (res) {
+      return {
+        code: 200,
+        message: '更新成功',
+      };
+    }
   }
 
   @Mutation(() => Boolean, { description: '删除用户' })

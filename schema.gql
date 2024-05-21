@@ -22,14 +22,9 @@ type UserType {
 }
 
 type Result {
-  """状态码"""
-  code: Float!
-
-  """信息"""
-  message: String!
-
-  """数据"""
-  data: String!
+  code: Int!
+  message: String
+  data: String
 }
 
 type Query {
@@ -45,7 +40,7 @@ type Mutation {
   create(params: UserInput!): Boolean!
 
   """更新用户"""
-  updateUser(id: String!, params: UserInput!): UserType!
+  updateUser(id: String!, params: UserInput!): Result!
 
   """删除用户"""
   delete(id: String!): Boolean!
