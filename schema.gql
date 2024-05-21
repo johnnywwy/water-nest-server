@@ -60,5 +60,5 @@ input UserInput {
   desc: String!
 
   """头像"""
-  avatar: String!
+  avatar: String
 }
