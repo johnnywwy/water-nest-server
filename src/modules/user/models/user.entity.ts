@@ -40,10 +40,10 @@ export class User {
   password: string;
 
   @Column({
-    comment: '账户信息',
+    comment: '头像',
     nullable: true, //在数据库层可以为空
   })
-  account: string;
+  avatar: string;
 
   // 验证码
   @Column({
