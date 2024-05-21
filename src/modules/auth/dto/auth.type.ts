@@ -6,7 +6,7 @@ export class Result {
   code: number;
 
   @Field({ description: '信息' })
-  message: string;
+  message?: string;
 
   @Field({ description: '数据' })
   data?: string; // 返回的数据

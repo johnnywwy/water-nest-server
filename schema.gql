@@ -38,9 +38,23 @@ type Query {
 
   """使用 ID 查询用户"""
   getUserInfo: UserType!
+}
+
+type Mutation {
+  """新增用户"""
+  create(params: UserInput!): Boolean!
 
   """更新用户"""
-  update(id: String!, params: UserInput!): UserType!
+  updateUser(id: String!, params: UserInput!): UserType!
+
+  """删除用户"""
+  delete(id: String!): Boolean!
+
+  """发送邮箱验证码"""
+  sendEmailCode(email: String!): Result!
+
+  """登录"""
+  login(email: String!, code: String!): Result!
 }
 
 input UserInput {
@@ -52,18 +66,4 @@ input UserInput {
 
   """头像"""
   avatar: String!
-}
-
-type Mutation {
-  """新增用户"""
-  create(params: UserInput!): Boolean!
-
-  """删除用户"""
-  delete(id: String!): Boolean!
-
-  """发送邮箱验证码"""
-  sendEmailCode(email: String!): Result!
-
-  """登录"""
-  login(email: String!, code: String!): Result!
 }

@@ -27,11 +27,11 @@ export class UserResolver {
     return await this.userService.find(id);
   }
 
-  @Query(() => UserType, { description: '更新用户' })
-  async update(
+  @Mutation(() => UserType, { description: '更新用户' })
+  async updateUser(
     @Args('id') id: string,
     @Args('params') params: UserInput,
-  ): Promise<boolean> {
+  ): Promise<any> {
     return await this.userService.update(id, params);
   }
 

@@ -20,7 +20,7 @@ interface IResults<T> {
   page?: Page;
 }
 
-export function CreateResult<T extends object>(
+export function createResult<T extends object>(
   ItemType: ClassType<T>,
 ): ClassType<IResult<T>> {
   @ObjectType()
@@ -38,7 +38,7 @@ export function CreateResult<T extends object>(
   return Result;
 }
 
-export function CreateResults<T extends object>(
+export function createResults<T extends object>(
   ItemTypes: ClassType<T>,
 ): ClassType<IResults<T>> {
   @ObjectType()
@@ -64,8 +64,8 @@ export class Result {
   @Field(() => Int)
   code: number;
 
-  @Field(() => String)
-  message: string;
+  @Field(() => String, { nullable: true })
+  message?: string;
 
   @Field(() => String, { nullable: true })
   data?: string;

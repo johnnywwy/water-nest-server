@@ -4,7 +4,7 @@ import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import {
   CODE_NOT_EXPIRE,
-  EMAIL_ERROR,
+  ACCOUNT_NOT_EXIST,
   LOGIN_ERROR,
   SUCCESS,
 } from 'src/common/constants/code';
@@ -61,7 +61,7 @@ export class AuthService {
         // 邮件发送失败
         console.error('邮件发送失败');
         return {
-          code: EMAIL_ERROR,
+          code: ACCOUNT_NOT_EXIST,
           message: '邮件发送失败',
         };
       }
@@ -69,7 +69,7 @@ export class AuthService {
       // 发送过程中发生错误
       console.error('发送过程中发生错误', error);
       return {
-        code: EMAIL_ERROR,
+        code: ACCOUNT_NOT_EXIST,
         message: '邮件发送失败',
       };
     }
