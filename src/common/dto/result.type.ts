@@ -22,8 +22,10 @@ export function createResult<T extends object>(
   class Result implements IResult<T> {
     @Field(() => Int)
     code: number;
+
     @Field(() => String)
     message: string;
+
     @Field(() => ItemType, { nullable: true })
     data?: T;
   }
@@ -37,10 +39,13 @@ export function createResults<T extends object>(
   class Results {
     @Field(() => Int)
     code: number;
+
     @Field(() => String)
     message: string;
+
     @Field(() => [ItemTypes], { nullable: true })
     data?: T[];
+
     @Field(() => Page, { nullable: true })
     page?: Page;
   }
@@ -51,8 +56,10 @@ export function createResults<T extends object>(
 export class Result {
   @Field(() => Int)
   code: number;
+
   @Field(() => String, { nullable: true })
   message?: string;
+
   @Field(() => String, { nullable: true })
   data?: string;
 }
