@@ -11,6 +11,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 // import { EmailModule } from './modules/email/email.module';
 import { RedisCacheModule } from './modules/redis/redis.module';
+import { StudentModule } from './modules/student/student.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { RedisCacheModule } from './modules/redis/redis.module';
     // 导入其他模块
     UserModule, // 用户模块
     AuthModule,
-    RedisCacheModule, // 登录模块
+    RedisCacheModule,
+    StudentModule, // 登录模块
     // EmailModule, // 邮箱模块
     // OssModule
   ],
