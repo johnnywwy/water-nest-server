@@ -1,23 +1,43 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStudentInput } from './dto/create-student.input';
-import { UpdateStudentInput } from './dto/update-student.input';
+import { DeepPartial, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Student } from './models/student.entity';
 
 @Injectable()
 export class StudentService {
-  create(createStudentInput: CreateStudentInput) {
-    return 'This action adds a new student';
+  constructor(
+    @InjectRepository(Student)
+    private readonly studentRepository: Repository<Student>,
+  ) {}
+
+  async create(entity: DeepPartial<Student>): Promise<boolean> {
+    const res = await this.studentRepository.save(
+      this.studentRepository.create(entity),
+    );
+    if (res) {
+      return true;
+    }
+    return false;
   }
 
   findAll() {
     return `This action returns all student`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} student`;
+  async findById(id: string): Promise<Student> {
+    return this.studentRepository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
-  update(id: number, updateStudentInput: UpdateStudentInput) {
-    return `This action updates a #${id} student`;
+  async updateById(id: string, entity: DeepPartial<Student>): Promise<boolean> {
+    const res = await this.studentRepository.update(id, entity);
+    if (res.affected > 0) {
+      return true;
+    }
+    return false;
   }
 
   remove(id: number) {

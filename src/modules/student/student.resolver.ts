@@ -1,48 +1,41 @@
 import {
   Resolver,
   // Query,
-  // Mutation,
-  // Args,
+  Mutation,
+  Args,
   // Int
 } from '@nestjs/graphql';
 import { StudentService } from './student.service';
 import { Student } from './models/student.entity';
-// import { CreateStudentInput } from './dto/create-student.input';
+import { StudentResult, StudentResults } from './dto/result-student.output';
+import { StudentInput } from './dto/student.input';
+import { STUDENT_NOT_EXIST, SUCCESS } from '@/common/constants/code';
+import { CurUserId } from '@/common/decorators/current-user.decorator';
+import { Result } from '@/common/dto/result.type';
 // import { UpdateStudentInput } from './dto/update-student.input';
 
 @Resolver(() => Student)
 export class StudentResolver {
   constructor(private readonly studentService: StudentService) {}
 
-  // @Mutation(() => {})
-  // createStudent(
-  //   @Args('createStudentInput') createStudentInput: CreateStudentInput,
-  // ) {
-  //   return this.studentService.create(createStudentInput);
-  // }
-
-  // @Query(() => [Student], { name: 'student' })
-  // findAll() {
-  //   return this.studentService.findAll();
-  // }
-
-  // @Query(() => Student, { name: 'student' })
-  // findOne(@Args('id', { type: () => Int }) id: number) {
-  //   return this.studentService.findOne(id);
-  // }
-
-  // @Mutation(() => Student)
-  // updateStudent(
-  //   @Args('updateStudentInput') updateStudentInput: UpdateStudentInput,
-  // ) {
-  //   return this.studentService.update(
-  //     updateStudentInput.id,
-  //     updateStudentInput,
-  //   );
-  // }
-
-  // @Mutation(() => Student)
-  // removeStudent(@Args('id', { type: () => Int }) id: number) {
-  //   return this.studentService.remove(id);
-  // }
+  @Mutation(() => StudentResult)
+  async commitStudentInfo(
+    @Args('params') params: StudentInput,
+    @CurUserId() userId: string,
+  ): Promise<Result> {
+    const student = await this.studentService.findById(userId);
+    if (student) {
+      const res = await this.studentService.updateById(student.id, params);
+      if (res) {
+        return {
+          code: SUCCESS,
+          message: '更新成功',
+        };
+      }
+    }
+    return {
+      code: STUDENT_NOT_EXIST,
+      message: '用户信息不存在',
+    };
+  }
 }
