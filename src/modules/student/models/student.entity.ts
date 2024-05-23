@@ -25,13 +25,11 @@ export class Student extends CommonEntity {
 
   @Column({
     comment: '密码',
-    default: '123456',
   })
   password: string;
 
   @Column({
     comment: '账户',
-    default: '',
   })
   account: string;
 }
