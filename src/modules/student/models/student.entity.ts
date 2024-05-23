@@ -2,7 +2,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 
-@Entity('Student')
+@Entity('student')
 export class Student {
   @PrimaryGeneratedColumn('uuid')
   id: string;
