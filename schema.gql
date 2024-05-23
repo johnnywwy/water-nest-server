@@ -66,12 +66,30 @@ type StudentResult {
   data: StudentType
 }
 
+type StudentResults {
+  code: Int!
+  message: String!
+  data: [StudentType!]
+  page: Page
+}
+
 type Query {
   """使用 ID 查询用户"""
   find(id: String!): UserType!
 
   """使用 ID 查询用户"""
   getUserInfo: UserType!
+
+  """获取单个学生信息"""
+  getStudentInfo: StudentResult!
+
+  """获取学生列表"""
+  getStudents(page: PageInput!): StudentResults!
+}
+
+input PageInput {
+  pageNum: Float!
+  pageSize: Float!
 }
 
 type Mutation {
@@ -89,6 +107,8 @@ type Mutation {
 
   """登录"""
   login(email: String!, code: String!): Result!
+
+  """更新单个学生信息"""
   commitStudentInfo(params: StudentInput!): StudentResult!
 }
 

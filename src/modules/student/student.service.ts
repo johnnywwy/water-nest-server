@@ -10,6 +10,14 @@ export class StudentService {
     private readonly studentRepository: Repository<Student>,
   ) {}
 
+  async findByAccount(account: string): Promise<Student> {
+    return this.studentRepository.findOne({
+      where: {
+        account,
+      },
+    });
+  }
+
   async create(entity: DeepPartial<Student>): Promise<boolean> {
     const res = await this.studentRepository.save(
       this.studentRepository.create(entity),
@@ -38,6 +46,22 @@ export class StudentService {
       return true;
     }
     return false;
+  }
+
+  async findStudents({
+    start,
+    length,
+  }: {
+    start: number;
+    length: number;
+  }): Promise<[Student[], number]> {
+    return this.studentRepository.findAndCount({
+      take: length,
+      skip: start,
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   remove(id: number) {

@@ -1,16 +1,37 @@
-// @Entity()
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { CommonEntity } from '@/common/entities/common.entity';
+import { Entity, Column } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 
 @Entity('student')
-export class Student {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Student extends CommonEntity {
   @Column({
     comment: '学生姓名',
     default: '',
   })
   @IsNotEmpty()
   name: string;
+
+  @Column({
+    comment: '手机号',
+    nullable: true,
+  })
+  tel: string;
+
+  @Column({
+    comment: '头像',
+    nullable: true,
+  })
+  avatar: string;
+
+  @Column({
+    comment: '密码',
+    default: '123456',
+  })
+  password: string;
+
+  @Column({
+    comment: '账户',
+    default: '',
+  })
+  account: string;
 }
